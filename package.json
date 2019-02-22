@@ -1,0 +1,59 @@
+{
+  "name": "remark-cli-help",
+  "version": "1.0.0",
+  "description": "Add cli help output to a README with remark.",
+  "license": "MIT",
+  "keywords": [
+    "text",
+    "markdown",
+    "plain",
+    "text"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "format": "remark *.md -qfo && xo --fix",
+    "test-api": "ava",
+    "test-coverage": "nyc --reporter lcov ava",
+    "test": "npm run format && npm run test-coverage",
+    "test-watch": "ava -v -w"
+  },
+  "author": "Jonathan Haines <jonno.haines@gmail.com>",
+  "contributors": [
+    "Jonathan Haines <jonno.haines@gmail.com>"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BarryThePenguin/remark-cli-help.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BarryThePenguin/remark-cli-help/issues"
+  },
+  "homepage": "https://github.com/BarryThePenguin/remark-cli-help#readme",
+  "devDependencies": {
+    "ava": "^1.0.1",
+    "is-hidden": "^1.1.1",
+    "negate": "^1.0.0",
+    "nyc": "^13.1.0",
+    "remark": "^10.0.1",
+    "remark-cli": "^6.0.1",
+    "remark-usage": "^6.1.3",
+    "vfile": "^4.0.0",
+    "xo": "^0.24.0"
+  },
+  "dependencies": {
+    "execa": "^1.0.0",
+    "mdast-util-heading-range": "^2.1.2"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false
+  },
+  "remarkConfig": {
+    "plugins": [
+      "usage"
+    ]
+  }
+}

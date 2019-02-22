@@ -1,0 +1,6 @@
+{
+  "bin": {
+    "foo": "./cli/foo.js",
+    "bar": "./cli/bar.js"
+  }
+}
