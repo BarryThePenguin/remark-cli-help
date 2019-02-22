@@ -62,8 +62,8 @@ function runFactory({args, cli, cwd}) {
 			commands = Object.values(cli);
 		}
 
-		if (!commands) {
-			throw new Error('Invalid command');
+		if (!Array.isArray(commands)) {
+			throw new TypeError('Invalid command');
 		}
 
 		const output = commands.map(command => runCli(cwd, command, args));
