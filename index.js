@@ -59,7 +59,7 @@ function runFactory({args, cli, cwd}) {
 		}
 
 		if (typeof cli === 'object') {
-			commands = Object.values(cli);
+			commands = mapValues(cli);
 		}
 
 		if (!Array.isArray(commands)) {
@@ -87,6 +87,11 @@ function runCli(cwd, cli, args) {
 		lang: 'markdown',
 		value: process.stdout
 	};
+}
+
+function mapValues(commands, fn) {
+	const values = key => commands[key];
+	return Object.keys(commands).map(fn || values);
 }
 
 function toExpression(value) {
