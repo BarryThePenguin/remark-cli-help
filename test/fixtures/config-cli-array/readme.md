@@ -1,3 +1,0 @@
-# config-cli-array
-
-## cli
