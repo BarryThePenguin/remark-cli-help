@@ -1,4 +1,5 @@
 {
+  "name": "package-cli-map",
   "bin": {
     "foo": "./cli/foo.js",
     "bar": "./cli/bar.js"

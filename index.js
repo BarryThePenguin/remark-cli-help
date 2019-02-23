@@ -48,18 +48,18 @@ function cliHelp(options = {}) {
 	}
 }
 
-function runFactory({args, cli, cwd}) {
+function runFactory({args, cli, cwd, name}) {
 	return run;
 
 	function run(start, nodes, end) {
 		let commands;
 
 		if (typeof cli === 'string') {
-			commands = [cli];
+			commands = [{name, cli}];
 		}
 
 		if (typeof cli === 'object') {
-			commands = mapValues(cli);
+			commands = mapCommands(cli);
 		}
 
 		if (!Array.isArray(commands)) {
@@ -72,7 +72,7 @@ function runFactory({args, cli, cwd}) {
 	}
 }
 
-function runCli(cwd, cli, args) {
+function runCli(cwd, {cli, name}, args) {
 	let process;
 	const cliPath = resolve(cwd, cli);
 
@@ -82,15 +82,21 @@ function runCli(cwd, cli, args) {
 		process = execa.sync(cli, args);
 	}
 
+	return processOutput(name || cli, args, process.stdout);
+}
+
+function processOutput(name, args, output) {
 	return {
 		type: 'code',
 		lang: 'markdown',
-		value: process.stdout
+		value: `$ ${name} ${args.join(' ')}
+
+${output}`
 	};
 }
 
-function mapValues(commands, fn) {
-	const values = key => commands[key];
+function mapCommands(commands, fn) {
+	const values = name => ({name, cli: commands[name]});
 	return Object.keys(commands).map(fn || values);
 }
 

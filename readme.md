@@ -1,6 +1,21 @@
 # remark-cli-help
 
-Add cli help output to a README with remark.
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Chat][chat-badge]][chat]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+
+Add cli help output to a README with [**remark**][remark].
+
+## Installation
+
+[npm][]:
+
+```bash
+npm install remark-cli-help
+```
 
 ## Usage
 
@@ -27,6 +42,8 @@ Yields:
 ## cli
 
 ```markdown
+$ remark-cli-help --help
+
 Usage: remark [options] [path | glob ...]
 
   CLI to process markdown with remark using plugins
@@ -68,3 +85,90 @@ Examples:
   $ remark . -o
 ```
 ````
+
+## API
+
+### `remark.use(cliHelp[, options])`
+
+Adds the output from `node ./cli.js --help` to the `cli` section in a `readme.md`.
+
+Removes the current content between the heading containing the text “cli”,
+and the next heading of the same (or higher) depth, and replaces it with
+the help output.
+
+#### `options`
+
+##### `options.cwd`
+
+`string?` — Path to a directory containing a node module.  Used to infer `name`,
+`main`, and `bin`.
+
+###### `options.name`
+
+`string?` — Name of the command, inferred from `package.json`s `name` property.
+Used to write the help command output `$ some-command --help`.
+
+###### `options.bin`
+
+`string?` — Path to the cli script.  Resolved from `package.json`s `bin`
+property (or `cli.js`).  See the [npm documentation][package-json-bin]
+for more details
+
+##### `options.args`
+
+`Array<string>?` — Arguments used to run the help command.  Defaults to `['--help']`
+
+###### `options.heading`
+
+`string?`, default: `'cli'` — Heading to look for, wrapped in
+`new RegExp('^(' + value + ')$', 'i');`.
+
+## Contribute
+
+See [`contributing.md` in `remarkjs/remark`][contributing] for ways to get
+started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
+## License
+
+[MIT][license] © [Jonathan Haines][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://img.shields.io/travis/remark-cli-help.svg
+
+[build]: https://travis-ci.org/remark-cli-help
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/remark-cli-help.svg
+
+[coverage]: https://codecov.io/github/remark-cli-help
+
+[downloads-badge]: https://img.shields.io/npm/dm/remark-cli-help.svg
+
+[downloads]: https://www.npmjs.com/package/remark-cli-help
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/remark
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
+[license]: license
+
+[author]: https://barrythepenguin.github.io/
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[package-json-bin]: https://docs.npmjs.com/files/package.json#bin
+
+[remark]: https://github.com/remarkjs/remark
+
+[contributing]: https://github.com/remarkjs/remark/blob/master/contributing.md
+
+[coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
