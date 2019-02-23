@@ -137,13 +137,13 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/remark-cli-help.svg
+[build-badge]: https://img.shields.io/travis/BarryThePenguin/remark-cli-help.svg
 
-[build]: https://travis-ci.org/remark-cli-help
+[build]: https://travis-ci.org/BarryThePenguin/remark-cli-help
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/remark-cli-help.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/BarryThePenguin/remark-cli-help.svg
 
-[coverage]: https://codecov.io/github/remark-cli-help
+[coverage]: https://codecov.io/github/BarryThePenguin/remark-cli-help
 
 [downloads-badge]: https://img.shields.io/npm/dm/remark-cli-help.svg
 
