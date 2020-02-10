@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/BarryThePenguin/remark-cli-help#readme",
   "devDependencies": {
-    "ava": "^1.0.1",
+    "ava": "^3.3.0",
     "is-hidden": "^1.1.1",
     "negate": "^1.0.0",
     "nyc": "^13.1.0",
