@@ -11,7 +11,7 @@ const cliHelp = require('..');
 const read = fs.readFileSync;
 const exists = fs.existsSync;
 
-test('cliHelp()', t => {
+test('cliHelp()', (t) => {
 	t.is(typeof cliHelp, 'function', 'should be a function');
 
 	t.notThrows(() => {
@@ -35,10 +35,7 @@ function macro(t, input, expected) {
 	fail = expected.indexOf('fail-') === 0 ? expected.slice(5) : '';
 
 	try {
-		result = remark()
-			.use(cliHelp, config)
-			.processSync(input)
-			.toString();
+		result = remark().use(cliHelp, config).processSync(input).toString();
 
 		t.snapshot(result);
 	} catch (error) {
@@ -52,7 +49,7 @@ function macro(t, input, expected) {
 	}
 }
 
-fixtures.forEach(fixture => {
+fixtures.forEach((fixture) => {
 	const filepath = ROOT + '/' + fixture;
 	const input = read(filepath + '/readme.md', 'utf-8');
 

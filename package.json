@@ -13,7 +13,7 @@
   "scripts": {
     "format": "remark *.md -qfo && xo --fix",
     "test-api": "ava",
-    "test-coverage": "nyc --reporter lcov ava",
+    "test-coverage": "nyc ava",
     "test": "npm run format && npm run test-coverage",
     "test-watch": "ava -v -w"
   },

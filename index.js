@@ -19,7 +19,7 @@ function cliHelp(options = {}) {
 
 	try {
 		pack = require(resolve(cwd, 'package.json'));
-	} catch (error) {
+	} catch {
 		pack = {};
 	}
 
@@ -66,7 +66,7 @@ function runFactory({args, cli, cwd, name}) {
 			throw new TypeError('Invalid command');
 		}
 
-		const output = commands.map(command => runCli(cwd, command, args));
+		const output = commands.map((command) => runCli(cwd, command, args));
 
 		return [start].concat(output, end);
 	}
@@ -96,7 +96,7 @@ ${output}`
 }
 
 function mapCommands(commands, fn) {
-	const values = name => ({name, cli: commands[name]});
+	const values = (name) => ({name, cli: commands[name]});
 	return Object.keys(commands).map(fn || values);
 }
 
