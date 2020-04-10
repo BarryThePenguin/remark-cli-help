@@ -31,9 +31,9 @@ Given a file:
 
 ```javascript
 const output = remark()
-	.use(cliHelp, {bin: 'remark'})
-	.processSync(vfile('## cli'))
-	.toString();
+  .use(cliHelp, {bin: 'remark'})
+  .processSync(vfile('## cli'))
+  .toString();
 ```
 
 Yields:
@@ -139,9 +139,9 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/BarryThePenguin/remark-cli-help.svg
+[build-badge]: https://github.com/BarryThePenguin/remark-cli-help/workflows/CI/badge.svg
 
-[build]: https://travis-ci.org/BarryThePenguin/remark-cli-help
+[build]: https://github.com/BarryThePenguin/remark-cli-help/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/BarryThePenguin/remark-cli-help.svg
 
