@@ -42,7 +42,7 @@
     "remark-preset-wooorm": "^7.0.0",
     "remark-usage": "^8.0.0",
     "vfile": "^4.0.0",
-    "xo": "^0.29.0"
+    "xo": "^0.33.0"
   },
   "dependencies": {
     "execa": "^4.0.0",
