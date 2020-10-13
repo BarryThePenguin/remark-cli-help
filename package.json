@@ -39,7 +39,7 @@
     "nyc": "^15.0.1",
     "remark": "^13.0.0",
     "remark-cli": "^8.0.1",
-    "remark-preset-wooorm": "^7.0.0",
+    "remark-preset-wooorm": "^8.0.1",
     "remark-usage": "^8.0.0",
     "vfile": "^4.0.0",
     "xo": "^0.33.1"
