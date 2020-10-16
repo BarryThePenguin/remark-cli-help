@@ -1,6 +1,6 @@
 {
   "name": "remark-cli-help",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Add cli help output to a README with remark.",
   "license": "MIT",
   "keywords": [
