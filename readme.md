@@ -3,9 +3,10 @@
 [![Build][build-badge]][build]
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
-[![Chat][chat-badge]][chat]
+[![Size][size-badge]][size]
 [![Sponsors][sponsors-badge]][collective]
 [![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
 Add cli help output to a README with [**remark**][remark].
 
@@ -152,9 +153,13 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/remark-cli-help
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
 
-[chat]: https://spectrum.chat/unified/remark
+[chat]: https://github.com/remarkjs/remark/discussions
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/remark-cli-help.svg
+
+[size]: https://bundlephobia.com/result?p=remark-cli-help
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -164,7 +169,7 @@ repository, organisation, or community you agree to abide by its terms.
 
 [license]: license
 
-[author]: https://barrythepenguin.github.io/
+[author]: https://jonno.dev/
 
 [npm]: https://docs.npmjs.com/cli/install
 
