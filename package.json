@@ -47,7 +47,7 @@
     "xo": "^0.33.1"
   },
   "dependencies": {
-    "execa": "^4.0.0",
+    "execa": "^5.0.0",
     "mdast-util-heading-range": "^2.1.2"
   },
   "xo": {
