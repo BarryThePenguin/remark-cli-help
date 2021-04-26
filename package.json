@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "execa": "^5.0.0",
-    "mdast-util-heading-range": "^2.1.2"
+    "mdast-util-heading-range": "^3.0.0"
   },
   "xo": {
     "prettier": true,
