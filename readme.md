@@ -23,9 +23,9 @@ npm install remark-cli-help
 Dependencies:
 
 ```javascript
-const remark = require('remark');
-const vfile = require('vfile');
-const cliHelp = require('remark-cli-help');
+import {remark} from 'remark';
+import {VFile} from 'vfile';
+import cliHelp from 'remark-cli-help';
 ```
 
 Given a file:
@@ -33,7 +33,7 @@ Given a file:
 ```javascript
 const output = remark()
   .use(cliHelp, {bin: 'remark'})
-  .processSync(vfile('## cli'))
+  .processSync(new VFile('## cli'))
   .toString();
 ```
 

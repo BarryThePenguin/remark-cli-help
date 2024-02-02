@@ -1,12 +1,12 @@
 // Dependencies:
-const remark = require('remark');
-const vfile = require('vfile');
-const cliHelp = require('.');
+import {remark} from 'remark';
+import {VFile} from 'vfile';
+import cliHelp from './index.js';
 
 // Given a file:
 const output = remark()
   .use(cliHelp, {bin: 'remark'})
-  .processSync(vfile('## cli'))
+  .processSync(new VFile('## cli'))
   .toString();
 
 // Yields:

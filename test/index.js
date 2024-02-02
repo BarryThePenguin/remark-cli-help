@@ -1,15 +1,12 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const test = require('ava');
-const remark = require('remark');
-const hidden = require('is-hidden');
-const negate = require('negate');
-const cliHelp = require('..');
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import test from 'ava';
+import {remark} from 'remark';
+import hidden from 'is-hidden';
+import negate from 'negate';
+import cliHelp from '../index.js';
 
 const read = fs.readFileSync;
-const exists = fs.existsSync;
 
 test('cliHelp()', (t) => {
   t.is(typeof cliHelp, 'function', 'should be a function');
@@ -19,39 +16,46 @@ test('cliHelp()', (t) => {
   }, 'should not throw if not passed options');
 });
 
-const ROOT = path.join(__dirname, 'fixtures');
-const fixtures = fs.readdirSync(ROOT).filter(negate(hidden));
+const root = new URL('fixtures/', import.meta.url);
+const fixtures = fs.readdirSync(root).filter(negate(hidden));
 
-function macro(t, input, expected) {
-  const filepath = ROOT + '/' + expected;
-  let config = filepath + '/config.json';
+function macro(t, expected) {
+  const folderUrl = new URL(expected + '/', root);
+  const inputUrl = new URL('readme.md', folderUrl);
+  const configUrl = new URL('config.json', folderUrl);
+
+  let config;
   let result;
-  let fail;
-
-  config = exists(config) ? require(config) : {};
-
-  config.cwd = filepath;
-
-  fail = expected.indexOf('fail-') === 0 ? expected.slice(5) : '';
 
   try {
-    result = remark().use(cliHelp, config).processSync(input).toString();
+    config = JSON.parse(String(read(configUrl)));
+  } catch {}
+
+  try {
+    result = remark()
+      .use(cliHelp, {
+        ...config,
+        cwd: fileURLToPath(folderUrl)
+      })
+      .processSync(read(inputUrl))
+      .toString();
 
     t.snapshot(result);
   } catch (error) {
-    if (!fail) {
+    if (expected.indexOf('fail-') !== 0) {
       throw error;
     }
 
-    fail = new RegExp(fail.replace(/-/, ' '), 'i');
+    const message = expected.slice(5).replace(/-/g, ' ');
 
-    t.regex(error.message, fail, 'should fail on `' + expected + '`');
+    t.regex(
+      String(error).replace(/`/g, ''),
+      new RegExp(message, 'i'),
+      'should fail on `' + expected + '`'
+    );
   }
 }
 
 for (const fixture of fixtures) {
-  const filepath = ROOT + '/' + fixture;
-  const input = read(filepath + '/readme.md', 'utf-8');
-
-  test(`Fixtures: ${fixture}`, macro, input, fixture);
+  test(`Fixtures: ${fixture}`, macro, fixture);
 }

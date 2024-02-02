@@ -9,13 +9,10 @@
     "plain",
     "text"
   ],
-  "files": [
-    "index.js"
-  ],
   "scripts": {
     "format": "remark *.md -qfo && xo --fix",
     "test-api": "ava",
-    "test-coverage": "nyc ava",
+    "test-coverage": "c8 ava",
     "test": "npm run format && npm run test-coverage",
     "test-watch": "ava -v -w"
   },
@@ -34,30 +31,45 @@
     "url": "https://github.com/BarryThePenguin/remark-cli-help/issues"
   },
   "homepage": "https://github.com/BarryThePenguin/remark-cli-help#readme",
+  "sideEffects": false,
+  "type": "module",
+  "exports": "./index.js",
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
   "devDependencies": {
     "ava": "^3.6.0",
+    "c8": "^9.1.0",
     "is-hidden": "^1.1.1",
     "negate": "^1.0.0",
-    "nyc": "^15.0.1",
-    "remark": "^13.0.0",
+    "remark": "^14.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.1",
     "remark-usage": "^9.0.0",
-    "vfile": "^4.0.0",
+    "vfile": "^5.0.0",
     "xo": "^0.38.2"
   },
   "dependencies": {
     "execa": "^5.0.0",
     "mdast-util-heading-range": "^2.1.2"
   },
-  "xo": {
-    "prettier": true,
-    "esnext": false
+  "prettier": {
+    "bracketSpacing": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
   },
   "remarkConfig": {
     "plugins": [
       "preset-wooorm",
       "usage"
     ]
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false
   }
 }
