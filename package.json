@@ -42,7 +42,7 @@
   "devDependencies": {
     "ava": "^6.1.1",
     "c8": "^9.1.0",
-    "is-hidden": "^1.1.1",
+    "is-hidden": "^2.0.1",
     "negate": "^1.0.0",
     "remark": "^14.0.0",
     "remark-cli": "^9.0.0",
