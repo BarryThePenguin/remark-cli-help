@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import test from 'ava';
 import {remark} from 'remark';
-import hidden from 'is-hidden';
+import {isHidden} from 'is-hidden';
 import negate from 'negate';
 import cliHelp from '../index.js';
 
@@ -17,7 +17,7 @@ test('cliHelp()', (t) => {
 });
 
 const root = new URL('fixtures/', import.meta.url);
-const fixtures = fs.readdirSync(root).filter(negate(hidden));
+const fixtures = fs.readdirSync(root).filter(negate(isHidden));
 
 function macro(t, expected) {
   const folderUrl = new URL(expected + '/', root);
