@@ -52,7 +52,7 @@
     "xo": "^0.56.0"
   },
   "dependencies": {
-    "execa": "^5.0.0",
+    "execa": "^8.0.1",
     "mdast-util-heading-range": "^4.0.0"
   },
   "prettier": {
