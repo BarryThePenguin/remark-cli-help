@@ -31,10 +31,8 @@ import cliHelp from 'remark-cli-help';
 Given a file:
 
 ```javascript
-const output = remark()
-  .use(cliHelp, {bin: 'remark'})
-  .processSync(new VFile('## cli'))
-  .toString();
+const file = new VFile('## cli');
+await remark().use(cliHelp, {bin: 'remark'}).process(file);
 ```
 
 Yields:

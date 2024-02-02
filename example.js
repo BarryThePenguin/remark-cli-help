@@ -4,10 +4,8 @@ import {VFile} from 'vfile';
 import cliHelp from './index.js';
 
 // Given a file:
-const output = remark()
-  .use(cliHelp, {bin: 'remark'})
-  .processSync(new VFile('## cli'))
-  .toString();
+const file = new VFile('## cli');
+await remark().use(cliHelp, {bin: 'remark'}).process(file);
 
 // Yields:
-console.log('markdown', output);
+console.log('markdown', String(file));
