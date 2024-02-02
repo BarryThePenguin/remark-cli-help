@@ -46,10 +46,10 @@ function macro(t, expected) {
       throw error;
     }
 
-    const message = expected.slice(5).replace(/-/g, ' ');
+    const message = expected.slice(5).replaceAll('-', ' ');
 
     t.regex(
-      String(error).replace(/`/g, ''),
+      String(error).replaceAll('`', ''),
       new RegExp(message, 'i'),
       'should fail on `' + expected + '`'
     );
