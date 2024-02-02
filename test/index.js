@@ -49,9 +49,9 @@ function macro(t, input, expected) {
   }
 }
 
-fixtures.forEach((fixture) => {
+for (const fixture of fixtures) {
   const filepath = ROOT + '/' + fixture;
   const input = read(filepath + '/readme.md', 'utf-8');
 
   test(`Fixtures: ${fixture}`, macro, input, fixture);
-});
+}

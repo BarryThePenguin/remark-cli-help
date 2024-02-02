@@ -76,11 +76,9 @@ function runCli(cwd, {cli, name}, args) {
   let process;
   const cliPath = resolve(cwd, cli);
 
-  if (existsSync(cliPath)) {
-    process = execa.sync('node', [cliPath, ...args]);
-  } else {
-    process = execa.sync(cli, args);
-  }
+  process = existsSync(cliPath)
+    ? execa.sync('node', [cliPath, ...args])
+    : execa.sync(cli, args);
 
   return processOutput(name || cli, args, process.stdout);
 }
