@@ -1,12 +1,14 @@
-import fs from 'node:fs';
+/**
+ * @typedef {import('remark-cli-help').Options} Config
+ * @typedef {import('vfile').VFile} VFile
+ */
+
+import {readdirSync} from 'node:fs';
+import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import test from 'ava';
 import {remark} from 'remark';
-import {isHidden} from 'is-hidden';
-import negate from 'negate';
 import cliHelp from '../index.js';
-
-const read = fs.readFileSync;
 
 test('cliHelp()', (t) => {
   t.is(typeof cliHelp, 'function', 'should be a function');
@@ -17,44 +19,50 @@ test('cliHelp()', (t) => {
 });
 
 const root = new URL('fixtures/', import.meta.url);
-const fixtures = fs.readdirSync(root).filter(negate(isHidden));
+const fixtures = readdirSync(root).filter(
+  (fixture) => !fixture.startsWith('.')
+);
 
-function macro(t, expected) {
-  const folderUrl = new URL(expected + '/', root);
+/**
+ * @type {import('ava').Macro<[input?: string], unknown>}
+ */
+const macro = test.macro(async function (t, input) {
+  const folderUrl = new URL(input + '/', root);
   const inputUrl = new URL('readme.md', folderUrl);
   const configUrl = new URL('config.json', folderUrl);
 
+  /** @type {Config | undefined} */
   let config;
+  /** @type {VFile} */
   let result;
 
   try {
-    config = JSON.parse(String(read(configUrl)));
+    config = JSON.parse(String(await readFile(configUrl)));
   } catch {}
 
   try {
-    result = remark()
-      .use(cliHelp, {
-        ...config,
-        cwd: fileURLToPath(folderUrl)
-      })
-      .processSync(read(inputUrl))
-      .toString();
+    result = await remark()
+      .use(cliHelp, config)
+      .process({
+        cwd: fileURLToPath(folderUrl),
+        value: await readFile(inputUrl)
+      });
 
-    t.snapshot(result);
+    t.snapshot(String(result));
   } catch (error) {
-    if (expected.indexOf('fail-') !== 0) {
+    if (input?.indexOf('fail-') !== 0) {
       throw error;
     }
 
-    const message = expected.slice(5).replaceAll('-', ' ');
+    const message = input.slice(5).replaceAll('-', ' ');
 
     t.regex(
       String(error).replaceAll('`', ''),
       new RegExp(message, 'i'),
-      'should fail on `' + expected + '`'
+      `should fail on \`'${input}'\``
     );
   }
-}
+});
 
 for (const fixture of fixtures) {
   test(`Fixtures: ${fixture}`, macro, fixture);

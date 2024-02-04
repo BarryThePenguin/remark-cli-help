@@ -10,10 +10,12 @@
     "text"
   ],
   "scripts": {
-    "format": "remark *.md -qfo && xo --fix",
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test": "npm run build && npm run format && npm run test-coverage",
     "test-api": "ava",
     "test-coverage": "c8 ava",
-    "test": "npm run format && npm run test-coverage",
     "test-watch": "ava -v -w"
   },
   "author": "Jonathan Haines <jonno.haines@gmail.com>",
@@ -42,18 +44,22 @@
   "devDependencies": {
     "ava": "^6.1.1",
     "c8": "^9.1.0",
-    "is-hidden": "^2.0.1",
-    "negate": "^1.0.0",
     "remark": "^15.0.1",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.1",
     "remark-usage": "^9.0.0",
+    "type-coverage": "^2.0.0",
+    "type-fest": "^4.10.2",
+    "typescript": "^5.0.0",
     "vfile": "^6.0.1",
     "xo": "^0.56.0"
   },
   "dependencies": {
+    "@types/mdast": "^4.0.3",
     "execa": "^8.0.1",
-    "mdast-util-heading-range": "^4.0.0"
+    "mdast-util-heading-range": "^4.0.0",
+    "vfile-find-up": "^7.1.0",
+    "vfile-message": "^4.0.2"
   },
   "prettier": {
     "bracketSpacing": false,
@@ -67,6 +73,12 @@
       "preset-wooorm",
       "usage"
     ]
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "ignoreCatch": true,
+    "strict": true
   },
   "xo": {
     "prettier": true,

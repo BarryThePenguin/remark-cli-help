@@ -41,7 +41,7 @@ Yields:
 ## cli
 
 ```markdown
-$ remark-cli-help --help
+$ remark --help
 
 Usage: remark [options] [path | glob ...]
 
