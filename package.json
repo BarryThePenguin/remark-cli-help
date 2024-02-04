@@ -46,7 +46,7 @@
     "c8": "^9.1.0",
     "remark": "^15.0.1",
     "remark-cli": "^9.0.0",
-    "remark-preset-wooorm": "^8.0.1",
+    "remark-preset-wooorm": "^9.1.0",
     "remark-usage": "^9.0.0",
     "type-coverage": "^2.0.0",
     "type-fest": "^4.10.2",
