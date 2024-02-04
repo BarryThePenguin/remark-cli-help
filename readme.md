@@ -45,7 +45,7 @@ $ remark --help
 
 Usage: remark [options] [path | glob ...]
 
-  CLI to process Markdown with remark
+  Command line interface to inspect and change markdown files with remark
 
 Options:
 
