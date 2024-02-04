@@ -47,7 +47,7 @@
     "remark": "^15.0.1",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.1",
-    "remark-usage": "^9.0.0",
+    "remark-usage": "^11.0.1",
     "type-coverage": "^2.0.0",
     "type-fest": "^4.10.2",
     "typescript": "^5.0.0",
